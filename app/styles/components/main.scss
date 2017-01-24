@@ -1,0 +1,118 @@
+
+
+// Variables
+$debug-color: #777;
+$input-font-size: 16px;
+$font-color: #fff;
+
+.highlight-debug{
+  background-color: $debug-color;
+}
+
+//General
+
+body {
+  background-color: #111;
+}
+
+input, select, label, textarea{
+  font-family:inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+#app{
+  background-color: #111;
+}
+
+.app-container{
+  background-color: #111;
+  font-size: $input-font-size;
+  color: white;
+}
+
+.page-title{
+  text-align: center;
+}
+
+.label-container{
+  margin-top: 5px;
+  align-content: left;
+}
+
+// User Input style
+.vertical-trick{
+  display: table;
+}
+
+.vertical-trick .columns{
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.valign-trick [class*="column"] + [class*="column"]:last-child {
+    float: none;
+}
+
+.user-input, .history-data, .resultsContainer{
+  padding: 10px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb(21,131,204);
+  background-color: $debug-color;
+}
+.user-input > label{
+  font-size: 30px;
+}
+
+.input-label{
+  font-size: $input-font-size;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.input-box{
+  font-size: $input-font-size;
+  text-align: right;
+}
+
+.app-style{
+}
+// Resutls style
+
+.resultsContainer{
+  width: 50%;
+}
+
+.resultsContainer label{
+  text-align: center;
+}
+
+// HistoryData style
+
+// .history-data{
+//   background-color: transparent;
+// }
+
+.pull-down{
+  margin-top: 50px;
+}
+
+// Monthly block style
+.monthly-block{
+  width: 100px;
+  height: 100px;
+  padding: 3px;
+  border-radius: 10px;
+  background-color: rgb(200,200,200);
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb(21,131,204);
+  margin: 10px;
+}
+
+.monthly-block h6{
+  text-align: center;
+  vertical-align: middle;
+}
