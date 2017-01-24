@@ -1,3 +1,7 @@
+
+require('./config/config');
+
+const _= require('lodash');
 var fs = require('fs');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -8,11 +12,12 @@ var {MediPlan} = require('./models/mediPlan');
 var {User} = require('./models/user');
 
 var app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 
 // Add middleware needed by express.
 app.use(bodyParser.json());
 
+// Create mediplans Routes
 app.post('/mediPlans', (req, res) =>{
   // TODO: in the http post request body. An Image should be included. (This is probably better from the react app.)
   var mediPlan = new MediPlan({
@@ -77,6 +82,23 @@ app.delete('/mediplans/:id', (req, res) =>{
 
 app.listen(port, () =>{
   console.log(`Started on port ${port}`);
+});
+
+// Create User Routes
+app.post('/users', (req, res) =>{
+
+  var body = _.pick(req.body, ['email', 'password']);
+  var user = new User(body);
+
+  user.save().then(() =>{
+    // this method returns a promise with the token variale
+    return user.generateAuthToken();
+  }).then( (token) => {
+    res.header('x-auth', token).send(user);
+  }).catch( (e) =>{
+    res.status(400).send(e);
+  });
+
 });
 
 module.exports = {app};
