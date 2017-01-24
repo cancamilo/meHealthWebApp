@@ -56,6 +56,25 @@ app.get('/mediplans/:id', (req, res) =>{
 
 });
 
+// delete a single mediplan by id
+app.delete('/mediplans/:id', (req, res) =>{
+  var id = req.params.id;
+
+  if(!ObjectID.isValid(id)) {
+    return res.status(404).send();
+  }
+
+  MediPlan.findByIdAndRemove(id).then( (plan) =>{
+    if(!plan) {
+      return res.status(404).send()
+    }
+
+    res.send(plan);
+  }).catch( (e) => {
+    res.status(400);
+  });
+});
+
 app.listen(port, () =>{
   console.log(`Started on port ${port}`);
 });
